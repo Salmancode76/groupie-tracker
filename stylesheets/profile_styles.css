@@ -40,20 +40,22 @@
 }
 table {
     width: 100%;
-    border-collapse: separate; 
+    border-collapse: collapse; 
     border-spacing: 0; 
     border-radius: 1em; 
-    overflow: hidden; 
     background-color: #ab9c99;
     border: 1px solid black; 
     min-height: 60vh;
+    font-size:1vw;
     
 }
 
 .sch th, .sch td {
     border: 1px solid black; 
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: center; 
+    overflow: hidden; 
+
 }
 
 .sch_info {
@@ -117,11 +119,12 @@ table {
         padding-bottom: 1em;
     }
     .sch th, .sch td {
-        font-size: 1em;
+        font-size: 3vw;
         padding: 4px;
     }
     table {
         width: 90%;
-        
+        overflow-x: auto;
     }
+   
 }

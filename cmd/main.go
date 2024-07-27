@@ -37,19 +37,26 @@ func server(w http.ResponseWriter, r *http.Request) {
 		// Parse the index.html template
 		Profile_Parse, err := template.ParseFiles(Profile_Path)
 
+		//store all artist infos
 		var artist_info interface{}
-		artist_info = Fetch.Fetch_profile(w, r, jsonArtistsCards)
 
-		Profile_Parse.ExecuteTemplate(w, "profile.html", artist_info)
-		if err != nil {
-			// Call a custom error handler function for HTTP 500 errors
+		var massage string
+
+		artist_info, massage = Fetch.Fetch_profile(w, r, jsonArtistsCards)
+
+		if massage == "500" {
 			Errors.Error500(w, r)
+		} else {
+			Profile_Parse.ExecuteTemplate(w, "profile.html", artist_info)
+			if err != nil {
+				// Call a custom error handler function for HTTP 500 errors
+				Errors.Error500(w, r)
+			}
 		}
 
 	default:
 		// Handle requests for paths other than "/"
-		w.WriteHeader(http.StatusNotFound)
-		fmt.Fprint(w, "404")
+		Errors.Error404(w, r)
 	}
 }
 
@@ -59,8 +66,12 @@ func main() {
 	styles := http.FileServer(http.Dir("../stylesheets"))
 	http.Handle("/stylesheets/", http.StripPrefix("/stylesheets/", styles))
 	// Start the HTTP server on port 1234
+
+	fmt.Println("Server up and runing on port :1234")
+
 	err := http.ListenAndServe(":1234", nil)
 	if err != nil {
-		fmt.Println("Error in starting the server", err)
+		fmt.Println("Server is down", err)
 	}
+
 }

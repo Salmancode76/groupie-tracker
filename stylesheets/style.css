@@ -8,6 +8,7 @@ body{
 
 }
 
+
 .main_content{
     display: flex;
     flex-direction: row;
@@ -51,6 +52,16 @@ body{
 
 
 }
+.erro{
+    padding: 1em;
+    text-align: center;
+}
+#E505_title{
+    font-size: 7vw;
+    color: rgb(255, 0, 0);
+
+}
+
 @media screen and (max-width: 900px) {
     .main_content{
          flex-direction: row;

@@ -30,7 +30,7 @@ func Fetch_Relation(w http.ResponseWriter, r *http.Request, url string) [][]stri
 	if err != nil {
 		Errors.Error500(w, r)
 	}
-
+	//passing the data from the map to the dates_loca slice
 	for location, dates := range jsonRelations.DatesLocations {
 		locationAndDates := append(strings.Split(strings.ToUpper(location), "-"), dates...)
 		dates_loca = append(dates_loca, locationAndDates)
