@@ -11,11 +11,12 @@ func Fetch_profile(w http.ResponseWriter, r *http.Request, jsonArtistsCards []Ar
 
 	// Parse artist ID from URL query parameter
 	artistID, err := strconv.Atoi(r.URL.Query().Get("id"))
-	if err != nil {
-		return artistInfo, "500"
-	}
+
 	var data_location [][]string
 	if artistID < 1 || artistID > len(jsonArtistsCards) {
+		return artistInfo, "404"
+	}
+	if err != nil {
 		return artistInfo, "500"
 	}
 

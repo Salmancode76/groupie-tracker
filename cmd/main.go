@@ -46,6 +46,8 @@ func server(w http.ResponseWriter, r *http.Request) {
 
 		if massage == "500" {
 			Errors.Error500(w, r)
+		} else if massage == "404" {
+			Errors.Error404(w, r)
 		} else {
 			Profile_Parse.ExecuteTemplate(w, "profile.html", artist_info)
 			if err != nil {
